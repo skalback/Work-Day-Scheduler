@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+  // Display current day and time in header
   $("#currentDay").text(moment().format('MMMM Do YYYY'));
   $("#currentTime").text(moment().format('h:mm a'));
 
@@ -17,7 +18,7 @@ $(document).ready(function() {
     localStorage.setItem(slot, entry, dateSaved);
   });
 
-
+  // This function returns a 24hr time for each slot ID provide. This is used in updateTimeSlot()
   function hourIdToNumber(hour){
     switch(hour) {
       case "8am-slot": return 8;
@@ -31,20 +32,17 @@ $(document).ready(function() {
       case "4pm-slot": return 16;
       case "5pm-slot": return 17;
       case "6pm-slot": return 18;
-      case "7pm-slot": return 19;
-      case "8pm-slot": return 20;
-      case "9pm-slot": return 21;
-      case "10pm-slot": return 22;
-      case "11pm-slot": return 23;
 
     }
   }
 
   function updateTimeSlot() {
-    //Updating current time and date
+
+    // Updating header to current time and date
     $("#currentDay").text(moment().format('MMMM Do YYYY'));
     $("#currentTime").text(moment().format('h:mm a'));
 
+    // For each timeslot compares with current time to update accordingly
     $(".time-block").each(function() {
       var currentHour = moment().hours();
       console.log("current hour: "+currentHour);
@@ -90,7 +88,6 @@ $(document).ready(function() {
   $("#4pm-slot .description").val(localStorage.getItem("4pm-slot"));
   $("#5pm-slot .description").val(localStorage.getItem("5pm-slot"));
   $("#6pm-slot .description").val(localStorage.getItem("6pm-slot"));
-  $("#10pm-slot .description").val(localStorage.getItem("10pm-slot"));
-  $("#11pm-slot .description").val(localStorage.getItem("11pm-slot"));
+
 });
 
